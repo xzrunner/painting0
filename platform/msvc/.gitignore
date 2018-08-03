@@ -1,0 +1,5 @@
+painting0/
+projects/*
+
+!projects/painting0.vcxproj
+!projects/painting0.vcxproj.filters
