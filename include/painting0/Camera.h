@@ -41,7 +41,7 @@ public:
 
 	virtual void Bind() const = 0;
 
-	virtual sm::mat4 GetModelViewMat() const = 0;
+	virtual sm::mat4 GetViewMat() const = 0;
 	virtual sm::mat4 GetProjectionMat() const = 0;
 
 	virtual void Reset() = 0;
