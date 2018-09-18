@@ -12,6 +12,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\include\painting0\Camera.h" />
+    <ClInclude Include="..\..\..\include\painting0\GlobalClock.h" />
+    <ClInclude Include="..\..\..\include\painting0\Shader.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\source\GlobalClock.cpp" />
+    <ClCompile Include="..\..\..\source\Shader.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectName>3.painting0</ProjectName>
