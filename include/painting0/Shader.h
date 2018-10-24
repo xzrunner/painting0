@@ -20,7 +20,10 @@ public:
 		std::string model_mat;
 		std::string view_mat;
 		std::string proj_mat;
+	};
 
+	struct UniformTimeNames
+	{
 		std::string time;
 		std::string sine_time;
 		std::string cos_time;
@@ -39,11 +42,11 @@ public:
 		const std::vector<ur::VertexAttrib>& va_list;
 
 		UniformNames uniform_names;
+		std::unique_ptr<UniformTimeNames> utime_names = nullptr;
 	};
 
 public:
 	Shader(ur::RenderContext* rc, const Params& params);
-	virtual ~Shader();
 
 private:
 	void UpdateTime(float t, float dt, float smooth_dt);
@@ -52,10 +55,22 @@ protected:
 	UniformNames m_uniform_names;
 
 private:
-	boost::signals2::connection m_conn_tick;
+	struct TimeUpdate
+	{
+		TimeUpdate(Shader* shader, const UniformTimeNames& unames);
+		~TimeUpdate();
 
-	// cache
-	float m_t = 0, m_dt = 0, m_smooth_dt = 0;
+		UniformTimeNames unames;
+
+		boost::signals2::connection conn_tick;
+
+		float t = 0;
+		float dt = 0;
+		float smooth_dt = 0;
+	};
+
+private:
+	std::unique_ptr<TimeUpdate> m_time_update = nullptr;
 
 }; // Shader
 
