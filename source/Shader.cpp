@@ -1,16 +1,11 @@
 #include "painting0/Shader.h"
 #include "painting0/GlobalClock.h"
 
-// todo: rm dependence of shaderlab
-#include <shaderlab/Blackboard.h>
-#include <shaderlab/RenderContext.h>
-#include <shaderlab/ShaderMgr.h>
-
 namespace pt0
 {
 
-Shader::Shader(ur::RenderContext* rc, const Params& params)
-	: ur::Shader(rc, params.vs, params.fs, params.textures, params.va_list)
+Shader::Shader(ur::RenderContext* rc, const Params& params, bool flush_cb)
+	: ur::Shader(rc, params.vs, params.fs, params.textures, params.va_list, flush_cb)
 	, m_uniform_names(params.uniform_names)
 {
 	if (params.utime_names) {
@@ -32,10 +27,6 @@ void Shader::UpdateTime(float t, float dt, float smooth_dt)
 		m_time_update->unames.cos_time.empty() && m_time_update->unames.delta_time.empty()) {
 		return;
 	}
-
-	auto& shader_mgr = sl::Blackboard::Instance()->GetRenderContext().GetShaderMgr();
-	shader_mgr.SetShader(sl::EXTERN_SHADER);
-	shader_mgr.BindRenderShader(nullptr, sl::EXTERN_SHADER);
 
 	Use();
 
