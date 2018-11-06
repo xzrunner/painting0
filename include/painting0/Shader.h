@@ -46,7 +46,7 @@ public:
 	};
 
 public:
-	Shader(ur::RenderContext* rc, const Params& params, bool flush_cb = true);
+	Shader(ur::RenderContext* rc, const Params& params);
 
 private:
 	void UpdateTime(float t, float dt, float smooth_dt);

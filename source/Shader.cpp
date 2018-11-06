@@ -4,8 +4,8 @@
 namespace pt0
 {
 
-Shader::Shader(ur::RenderContext* rc, const Params& params, bool flush_cb)
-	: ur::Shader(rc, params.vs, params.fs, params.textures, params.va_list, flush_cb)
+Shader::Shader(ur::RenderContext* rc, const Params& params)
+	: ur::Shader(rc, params.vs, params.fs, params.textures, params.va_list)
 	, m_uniform_names(params.uniform_names)
 {
 	if (params.utime_names) {
