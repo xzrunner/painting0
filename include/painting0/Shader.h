@@ -5,6 +5,7 @@
 #pragma warning(disable:4996)
 #endif
 
+#include <SM_Matrix.h>
 #include <unirender/Shader.h>
 
 #include <boost/signals2.hpp>
@@ -48,6 +49,8 @@ public:
 public:
 	Shader(ur::RenderContext* rc, const Params& params);
 
+	void UpdateModelMat(const sm::mat4& mat);
+
 private:
 	void UpdateTime(float t, float dt, float smooth_dt);
 
@@ -70,6 +73,8 @@ private:
 	};
 
 private:
+	sm::mat4 m_model_mat;
+
 	std::unique_ptr<TimeUpdate> m_time_update = nullptr;
 
 }; // Shader

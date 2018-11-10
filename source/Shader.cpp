@@ -13,6 +13,18 @@ Shader::Shader(ur::RenderContext* rc, const Params& params)
 	}
 }
 
+void Shader::UpdateModelMat(const sm::mat4& mat)
+{
+	if (mat == m_model_mat) {
+		return;
+	}
+	m_model_mat = mat;
+
+	Use();
+
+	SetMat4(m_uniform_names.model_mat.c_str(), mat.x);
+}
+
 void Shader::UpdateTime(float t, float dt, float smooth_dt)
 {
 	assert(m_time_update);
