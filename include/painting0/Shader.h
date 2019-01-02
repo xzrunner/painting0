@@ -21,6 +21,8 @@ public:
 		std::string model_mat;
 		std::string view_mat;
 		std::string proj_mat;
+
+        std::string resolution;
 	};
 
 	struct UniformTimeNames
@@ -50,6 +52,8 @@ public:
 	Shader(ur::RenderContext* rc, const Params& params);
 
 	void UpdateModelMat(const sm::mat4& mat);
+
+    void SetResolution(float width, float height);
 
 private:
 	void UpdateTime(float t, float dt, float smooth_dt);

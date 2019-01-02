@@ -25,6 +25,14 @@ void Shader::UpdateModelMat(const sm::mat4& mat)
 	SetMat4(m_uniform_names.model_mat.c_str(), mat.x);
 }
 
+void Shader::SetResolution(float width, float height)
+{
+    if (!m_uniform_names.resolution.empty()) {
+        const float res[2] = { width, height };
+        SetVec2(m_uniform_names.resolution, res);
+    }
+}
+
 void Shader::UpdateTime(float t, float dt, float smooth_dt)
 {
 	assert(m_time_update);
