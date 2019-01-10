@@ -23,6 +23,8 @@ public:
 		std::string proj_mat;
 
         std::string resolution;
+
+        std::string cam_pos;
 	};
 
 	struct UniformTimeNames
@@ -54,6 +56,7 @@ public:
 	void UpdateModelMat(const sm::mat4& mat);
 
     void SetResolution(float width, float height);
+    void SetCamraPos(const sm::vec3& pos);
 
 private:
 	void UpdateTime(float t, float dt, float smooth_dt);

@@ -33,6 +33,13 @@ void Shader::SetResolution(float width, float height)
     }
 }
 
+void Shader::SetCamraPos(const sm::vec3& pos)
+{
+    if (!m_uniform_names.cam_pos.empty()) {
+        SetVec3(m_uniform_names.cam_pos, pos.xyz);
+    }
+}
+
 void Shader::UpdateTime(float t, float dt, float smooth_dt)
 {
 	assert(m_time_update);
