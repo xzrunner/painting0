@@ -27,10 +27,21 @@
     <ClInclude Include="..\..\..\include\painting0\RenderPass.h">
       <Filter>render</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\include\painting0\Color.h">
+      <Filter>dataset</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="render">
       <UniqueIdentifier>{6f34778e-90b9-4f37-a024-d7467a5abd5c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="dataset">
+      <UniqueIdentifier>{f0ff7d4b-e76e-4c78-8859-bee1bedd408d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\include\painting0\Color.inl">
+      <Filter>dataset</Filter>
+    </None>
   </ItemGroup>
 </Project>
