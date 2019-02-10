@@ -1,11 +1,6 @@
 #pragma once
 
-#include "painting0/RenderVariant.h"
-
-#include <map>
-#include <memory>
-
-namespace ur { class Shader; }
+#include "painting0/ShaderUniforms.h"
 
 namespace pt0
 {
@@ -17,18 +12,16 @@ class Material
 public:
     Material() {}
 
-    void AddVar(const std::string& name, const RenderVariant& var);
-    const RenderVariant* FetchVar(const std::string& name) const;
+    void AddVar(const std::string& name, const RenderVariant& var) { m_uniforms.AddVar(name, var); }
+    const RenderVariant* FetchVar(const std::string& name) const { return m_uniforms.FetchVar(name); }
 
-    auto& GetAllVars() const { return m_vars; }
-    void SetVar(const std::string& name, const RenderVariant& var);
+    auto& GetAllVars() const { return m_uniforms.GetAllVars(); }
+    void SetVar(const std::string& name, const RenderVariant& var) { m_uniforms.SetVar(name, var); }
 
-    void Bind(const ur::Shader& shader) const;
+    void Bind(const ur::Shader& shader) const { m_uniforms.Bind(shader); }
 
 private:
-    std::map<std::string, RenderVariant> m_vars;
-
-//    std::shared_ptr<Shader> m_shader = nullptr;
+    ShaderUniforms m_uniforms;
 
 }; // Material
 

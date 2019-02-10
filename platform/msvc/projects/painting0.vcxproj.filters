@@ -5,10 +5,10 @@
     <ClCompile Include="..\..\..\source\Shader.cpp">
       <Filter>render</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\source\Material.cpp">
+    <ClCompile Include="..\..\..\source\RenderVariant.cpp">
       <Filter>render</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\source\RenderVariant.cpp">
+    <ClCompile Include="..\..\..\source\ShaderUniforms.cpp">
       <Filter>render</Filter>
     </ClCompile>
   </ItemGroup>
@@ -29,6 +29,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\include\painting0\Color.h">
       <Filter>dataset</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\painting0\ShaderUniforms.h">
+      <Filter>render</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

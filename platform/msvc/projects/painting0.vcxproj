@@ -18,12 +18,13 @@
     <ClInclude Include="..\..\..\include\painting0\RenderPass.h" />
     <ClInclude Include="..\..\..\include\painting0\RenderVariant.h" />
     <ClInclude Include="..\..\..\include\painting0\Shader.h" />
+    <ClInclude Include="..\..\..\include\painting0\ShaderUniforms.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\source\GlobalClock.cpp" />
-    <ClCompile Include="..\..\..\source\Material.cpp" />
     <ClCompile Include="..\..\..\source\RenderVariant.cpp" />
     <ClCompile Include="..\..\..\source\Shader.cpp" />
+    <ClCompile Include="..\..\..\source\ShaderUniforms.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\include\painting0\Color.inl" />

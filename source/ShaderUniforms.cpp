@@ -1,4 +1,4 @@
-#include "painting0/Material.h"
+#include "painting0/ShaderUniforms.h"
 #include "painting0/RenderVariant.h"
 
 #include <unirender/Shader.h>
@@ -6,12 +6,12 @@
 namespace pt0
 {
 
-void Material::AddVar(const std::string& name, const RenderVariant& var)
+void ShaderUniforms::AddVar(const std::string& name, const RenderVariant& var)
 {
     m_vars.insert({ name, var });
 }
 
-const RenderVariant* Material::FetchVar(const std::string& name) const
+const RenderVariant* ShaderUniforms::FetchVar(const std::string& name) const
 {
     auto itr = m_vars.find(name);
     if (itr == m_vars.end()) {
@@ -21,7 +21,7 @@ const RenderVariant* Material::FetchVar(const std::string& name) const
     }
 }
 
-void Material::SetVar(const std::string& name, const RenderVariant& var)
+void ShaderUniforms::SetVar(const std::string& name, const RenderVariant& var)
 {
     auto itr = m_vars.find(name);
     if (itr == m_vars.end()) {
@@ -31,7 +31,7 @@ void Material::SetVar(const std::string& name, const RenderVariant& var)
     memcpy(&itr->second, &var, sizeof(var));
 }
 
-void Material::Bind(const ur::Shader& shader) const
+void ShaderUniforms::Bind(const ur::Shader& shader) const
 {
     for (auto& var : m_vars)
     {
