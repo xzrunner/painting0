@@ -15,4 +15,12 @@ RenderVariant::RenderVariant(ur::Texture3D* tex3d)
     this->tex.tex3d = tex3d;
 }
 
+RenderVariant::RenderVariant(const sm::mat4* data, size_t size)
+    : type(RenderVarType::ARRAY)
+{
+    array.type = RenderVarType::MAT4;
+    array.size = size;
+    array.data = data;
+}
+
 }

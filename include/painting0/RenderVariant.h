@@ -25,6 +25,7 @@ enum class RenderVarType
     MAT2,
     MAT3,
     MAT4,
+    ARRAY,
 };
 
 class RenderVariant
@@ -42,6 +43,7 @@ public:
     explicit RenderVariant(const sm::mat2& v) : type(RenderVarType::MAT2), mat2(v) {}
     explicit RenderVariant(const sm::mat3& v) : type(RenderVarType::MAT3), mat3(v) {}
     explicit RenderVariant(const sm::mat4& v) : type(RenderVarType::MAT4), mat4(v) {}
+    explicit RenderVariant(const sm::mat4* data, size_t size);
 
     RenderVarType type;
 
@@ -57,6 +59,13 @@ public:
         };
     };
 
+    struct Array
+    {
+        RenderVarType type = RenderVarType::INVALID;
+        size_t        size = 0;
+        const void*   data = nullptr;
+    };
+
     union
     {
         bool     b;
@@ -69,6 +78,7 @@ public:
         sm::mat2 mat2;
         sm::mat3 mat3;
         sm::mat4 mat4;
+        Array    array;
     };
 
 }; // RenderVariant

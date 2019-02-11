@@ -77,6 +77,10 @@ void ShaderUniforms::Bind(const ur::Shader& shader) const
         case RenderVarType::MAT4:
             shader.SetMat4(name, val.mat4.x);
             break;
+        case RenderVarType::ARRAY:
+            assert(val.array.type == RenderVarType::MAT4);
+            shader.SetMultiMat4(name, static_cast<const sm::mat4*>(val.array.data)->x, val.array.size);
+            break;
         }
     }
 }
