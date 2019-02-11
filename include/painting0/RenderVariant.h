@@ -32,6 +32,8 @@ class RenderVariant
 {
 public:
     RenderVariant() : type(RenderVarType::INVALID) {}
+    RenderVariant(const RenderVariant& var);
+    RenderVariant& operator = (const RenderVariant& var);
     explicit RenderVariant(bool v)  : type(RenderVarType::BOOL),  b(v) {}
     explicit RenderVariant(int  v)  : type(RenderVarType::INT),   i(v) {}
     explicit RenderVariant(float v) : type(RenderVarType::FLOAT), f(v) {}

@@ -3,6 +3,17 @@
 namespace pt0
 {
 
+RenderVariant::RenderVariant(const RenderVariant& var)
+{
+    memcpy(this, &var, sizeof(var));
+}
+
+RenderVariant& RenderVariant::operator = (const RenderVariant& var)
+{
+    memcpy(this, &var, sizeof(var));
+    return *this;
+}
+
 RenderVariant::RenderVariant(ur::Texture* tex)
     : type(RenderVarType::SAMPLER2D)
 {
