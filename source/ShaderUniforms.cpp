@@ -8,7 +8,10 @@ namespace pt0
 
 void ShaderUniforms::AddVar(const std::string& name, const RenderVariant& var)
 {
-    m_vars.insert({ name, var });
+    auto stat = m_vars.insert({ name, var });
+    if (!stat.second) {
+        stat.first->second = var;
+    }
 }
 
 const RenderVariant* ShaderUniforms::FetchVar(const std::string& name) const
