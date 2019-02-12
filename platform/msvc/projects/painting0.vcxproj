@@ -20,6 +20,7 @@
     <ClInclude Include="..\..\..\include\painting0\RenderVariant.h" />
     <ClInclude Include="..\..\..\include\painting0\Shader.h" />
     <ClInclude Include="..\..\..\include\painting0\ShaderUniforms.h" />
+    <ClInclude Include="..\..\..\include\painting0\UniformNames.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\source\GlobalClock.cpp" />

@@ -8,8 +8,11 @@ Shader::Shader(ur::RenderContext* rc, const Params& params)
 	: ur::Shader(rc, params.vs, params.fs, params.textures, params.va_list)
 	, m_uniform_names(params.uniform_names)
 {
-	if (params.utime_names) {
-		m_time_update = std::make_unique<TimeUpdate>(this, *params.utime_names);
+	if (!params.uniform_names[U_TIME].empty() ||
+        !params.uniform_names[U_SINE_TIME].empty() ||
+        !params.uniform_names[U_COS_TIME].empty() ||
+        !params.uniform_names[U_DELTA_TIME].empty()) {
+		m_time_update = std::make_unique<TimeUpdate>(this);
 	}
 }
 
@@ -22,22 +25,8 @@ void Shader::UpdateModelMat(const sm::mat4& mat)
 
 	Use();
 
-	SetMat4(m_uniform_names.model_mat.c_str(), mat.x);
-}
-
-void Shader::SetResolution(float width, float height)
-{
-    if (!m_uniform_names.resolution.empty()) {
-        const float res[2] = { width, height };
-        SetVec2(m_uniform_names.resolution, res);
-    }
-}
-
-void Shader::SetCamraPos(const sm::vec3& pos)
-{
-    if (!m_uniform_names.cam_pos.empty()) {
-        SetVec3(m_uniform_names.cam_pos, pos.xyz);
-    }
+    assert(!m_uniform_names[U_MODEL_MAT].empty());
+	SetMat4(m_uniform_names[U_MODEL_MAT], mat.x);
 }
 
 void Shader::UpdateTime(float t, float dt, float smooth_dt)
@@ -50,28 +39,24 @@ void Shader::UpdateTime(float t, float dt, float smooth_dt)
 	m_time_update->t         = t;
 	m_time_update->dt        = dt;
 	m_time_update->smooth_dt = smooth_dt;
-	if (m_time_update->unames.time.empty() && m_time_update->unames.sine_time.empty() &&
-		m_time_update->unames.cos_time.empty() && m_time_update->unames.delta_time.empty()) {
-		return;
-	}
 
 	Use();
 
-	if (!m_time_update->unames.time.empty()) {
+	if (!m_uniform_names[U_TIME].empty()) {
 		float val[] = { t / 20, t, t * 2, t * 3 };
-		SetVec4(m_time_update->unames.time, val);
+		SetVec4(m_uniform_names[U_TIME], val);
 	}
-	if (!m_time_update->unames.sine_time.empty()) {
+	if (!m_uniform_names[U_SINE_TIME].empty()) {
 		float val[] = { sin(t / 8), sin(t / 4), sin(t / 2), sin(t) };
-		SetVec4(m_time_update->unames.sine_time, val);
+		SetVec4(m_uniform_names[U_SINE_TIME], val);
 	}
-	if (!m_time_update->unames.cos_time.empty()) {
+	if (!m_uniform_names[U_COS_TIME].empty()) {
 		float val[] = { cos(t / 8), cos(t / 4), cos(t / 2), cos(t) };
-		SetVec4(m_time_update->unames.cos_time, val);
+		SetVec4(m_uniform_names[U_COS_TIME], val);
 	}
-	if (!m_time_update->unames.delta_time.empty()) {
+	if (!m_uniform_names[U_DELTA_TIME].empty()) {
 		float val[] = { dt, 1 / dt, smooth_dt, 1 / smooth_dt };
-		SetVec4(m_time_update->unames.delta_time, val);
+		SetVec4(m_uniform_names[U_DELTA_TIME], val);
 	}
 }
 
@@ -79,8 +64,7 @@ void Shader::UpdateTime(float t, float dt, float smooth_dt)
 // class Shader::TimeUpdate
 //////////////////////////////////////////////////////////////////////////
 
-Shader::TimeUpdate::TimeUpdate(Shader* shader, const UniformTimeNames& unames)
-	: unames(unames)
+Shader::TimeUpdate::TimeUpdate(Shader* shader)
 {
 	conn_tick = GlobalClock::Instance()->DoOnTick(boost::bind(&Shader::UpdateTime, shader, _1, _2, _3));
 }

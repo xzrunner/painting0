@@ -5,6 +5,8 @@
 #pragma warning(disable:4996)
 #endif
 
+#include "painting0/UniformNames.h"
+
 #include <SM_Matrix.h>
 #include <unirender/Shader.h>
 
@@ -16,25 +18,6 @@ namespace pt0
 class Shader : public ur::Shader
 {
 public:
-	struct UniformNames
-	{
-		std::string model_mat;
-		std::string view_mat;
-		std::string proj_mat;
-
-        std::string resolution;
-
-        std::string cam_pos;
-	};
-
-	struct UniformTimeNames
-	{
-		std::string time;
-		std::string sine_time;
-		std::string cos_time;
-		std::string delta_time;
-	};
-
 	struct Params
 	{
 		Params(const std::vector<std::string>& textures,
@@ -46,8 +29,7 @@ public:
 		const std::vector<std::string>& textures;
 		const std::vector<ur::VertexAttrib>& va_list;
 
-		UniformNames uniform_names;
-		std::unique_ptr<UniformTimeNames> utime_names = nullptr;
+        UniformNames uniform_names;
 	};
 
 public:
@@ -55,22 +37,21 @@ public:
 
 	void UpdateModelMat(const sm::mat4& mat);
 
-    void SetResolution(float width, float height);
-    void SetCamraPos(const sm::vec3& pos);
+    auto& GetUniformName(UniformTypes type) const {
+        return m_uniform_names[type];
+    }
 
 private:
 	void UpdateTime(float t, float dt, float smooth_dt);
 
 protected:
-	UniformNames m_uniform_names;
+    UniformNames m_uniform_names;
 
 private:
 	struct TimeUpdate
 	{
-		TimeUpdate(Shader* shader, const UniformTimeNames& unames);
+		TimeUpdate(Shader* shader);
 		~TimeUpdate();
-
-		UniformTimeNames unames;
 
 		boost::signals2::connection conn_tick;
 
