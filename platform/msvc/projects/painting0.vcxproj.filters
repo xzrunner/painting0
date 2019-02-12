@@ -33,6 +33,9 @@
     <ClInclude Include="..\..\..\include\painting0\ShaderUniforms.h">
       <Filter>render</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\include\painting0\RenderContext.h">
+      <Filter>render</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="render">

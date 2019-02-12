@@ -15,6 +15,7 @@
     <ClInclude Include="..\..\..\include\painting0\Color.h" />
     <ClInclude Include="..\..\..\include\painting0\GlobalClock.h" />
     <ClInclude Include="..\..\..\include\painting0\Material.h" />
+    <ClInclude Include="..\..\..\include\painting0\RenderContext.h" />
     <ClInclude Include="..\..\..\include\painting0\RenderPass.h" />
     <ClInclude Include="..\..\..\include\painting0\RenderVariant.h" />
     <ClInclude Include="..\..\..\include\painting0\Shader.h" />
