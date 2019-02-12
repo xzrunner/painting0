@@ -1,14 +1,13 @@
 #pragma once
 
 #include "painting0/RenderVariant.h"
+#include "painting0/Material.h"
 
 #include <map>
 #include <memory>
 
 namespace pt0
 {
-
-class Material;
 
 class RenderPass
 {
