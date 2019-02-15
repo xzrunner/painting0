@@ -12,6 +12,8 @@
 
 #include <boost/signals2.hpp>
 
+#include <rttr/registration>
+
 namespace pt0
 {
 
@@ -64,6 +66,8 @@ private:
 	sm::mat4 m_model_mat;
 
 	std::unique_ptr<TimeUpdate> m_time_update = nullptr;
+
+    RTTR_ENABLE()
 
 }; // Shader
 
