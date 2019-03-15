@@ -2,6 +2,8 @@
 #include "painting0/RenderVariant.h"
 
 #include <unirender/Shader.h>
+#include <unirender/Blackboard.h>
+#include <unirender/RenderContext.h>
 
 namespace pt0
 {
@@ -54,6 +56,11 @@ void ShaderUniforms::Bind(const ur::Shader& shader) const
         case RenderVarType::SAMPLER1D:
             break;
         case RenderVarType::SAMPLER2D:
+        {
+            assert(val.tex.tex);
+            int tex_id = val.tex.tex->TexID();
+            ur::Blackboard::Instance()->GetRenderContext().BindTexture(tex_id, 0);
+        }
             break;
         case RenderVarType::SAMPLER3D:
             break;
