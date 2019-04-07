@@ -63,6 +63,7 @@ private:
 	};
 
 private:
+    bool m_model_mat_valid = false;
 	sm::mat4 m_model_mat;
 
 	std::unique_ptr<TimeUpdate> m_time_update = nullptr;

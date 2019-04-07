@@ -18,9 +18,10 @@ Shader::Shader(ur::RenderContext* rc, const Params& params)
 
 void Shader::UpdateModelMat(const sm::mat4& mat)
 {
-	if (mat == m_model_mat) {
+	if (m_model_mat_valid && mat == m_model_mat) {
 		return;
 	}
+    m_model_mat_valid = true;
 	m_model_mat = mat;
 
 	Use();
