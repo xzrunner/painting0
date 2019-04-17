@@ -6,21 +6,19 @@
 namespace pt0
 {
 
-enum UniformTypes
+enum class UniformTypes
 {
-    U_MODEL_MAT,
-    U_VIEW_MAT,
-    U_PROJ_MAT,
+    ModelMat,
+    ViewMat,
+    ProjMat,
 
-    U_RESOLUTION,
-    U_CAM_POS,
+    Resolution,
+    CamPos,
 
-    U_TIME,
-    U_SINE_TIME,
-    U_COS_TIME,
-    U_DELTA_TIME,
-
-    U_MAX_COUNT,
+    Time,
+    SineTime,
+    CosTime,
+    DeltaiTme,
 };
 
 class UniformNames
