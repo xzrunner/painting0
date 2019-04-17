@@ -39,8 +39,8 @@ public:
 
 	void UpdateModelMat(const sm::mat4& mat);
 
-    auto& GetUniformName(UniformTypes type) const {
-        return m_uniform_names[type];
+    auto GetUniformName(UniformTypes type) const {
+        return m_uniform_names.Query(type);
     }
 
 private:

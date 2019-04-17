@@ -8,12 +8,12 @@ Shader::Shader(ur::RenderContext* rc, const Params& params)
 	: ur::Shader(rc, params.vs, params.fs, params.textures, params.va_list)
 	, m_uniform_names(params.uniform_names)
 {
-	if (!params.uniform_names[U_TIME].empty() ||
-        !params.uniform_names[U_SINE_TIME].empty() ||
-        !params.uniform_names[U_COS_TIME].empty() ||
-        !params.uniform_names[U_DELTA_TIME].empty()) {
-		m_time_update = std::make_unique<TimeUpdate>(this);
-	}
+    if (params.uniform_names.IsExist(U_TIME) ||
+        params.uniform_names.IsExist(U_SINE_TIME) ||
+        params.uniform_names.IsExist(U_COS_TIME) ||
+        params.uniform_names.IsExist(U_DELTA_TIME)) {
+        m_time_update = std::make_unique<TimeUpdate>(this);
+    }
 }
 
 void Shader::UpdateModelMat(const sm::mat4& mat)
@@ -26,8 +26,10 @@ void Shader::UpdateModelMat(const sm::mat4& mat)
 
 	Use();
 
-    assert(!m_uniform_names[U_MODEL_MAT].empty());
-	SetMat4(m_uniform_names[U_MODEL_MAT], mat.x);
+    auto name = m_uniform_names.Query(U_MODEL_MAT);
+    if (!name.empty()) {
+        SetMat4(name, mat.x);
+    }
 }
 
 void Shader::UpdateTime(float t, float dt, float smooth_dt)
@@ -43,21 +45,29 @@ void Shader::UpdateTime(float t, float dt, float smooth_dt)
 
 	Use();
 
-	if (!m_uniform_names[U_TIME].empty()) {
+    std::string name;
+    name = m_uniform_names.Query(U_TIME);
+	if (!name.empty()) {
 		float val[] = { t / 20, t, t * 2, t * 3 };
-		SetVec4(m_uniform_names[U_TIME], val);
+		SetVec4(name, val);
 	}
-	if (!m_uniform_names[U_SINE_TIME].empty()) {
+
+    name = m_uniform_names.Query(U_SINE_TIME);
+	if (!name.empty()) {
 		float val[] = { sin(t / 8), sin(t / 4), sin(t / 2), sin(t) };
-		SetVec4(m_uniform_names[U_SINE_TIME], val);
+		SetVec4(name, val);
 	}
-	if (!m_uniform_names[U_COS_TIME].empty()) {
+
+    name = m_uniform_names.Query(U_COS_TIME);
+	if (!name.empty()) {
 		float val[] = { cos(t / 8), cos(t / 4), cos(t / 2), cos(t) };
-		SetVec4(m_uniform_names[U_COS_TIME], val);
+		SetVec4(name, val);
 	}
-	if (!m_uniform_names[U_DELTA_TIME].empty()) {
+
+    name = m_uniform_names.Query(U_DELTA_TIME);
+	if (!name.empty()) {
 		float val[] = { dt, 1 / dt, smooth_dt, 1 / smooth_dt };
-		SetVec4(m_uniform_names[U_DELTA_TIME], val);
+		SetVec4(name, val);
 	}
 }
 
