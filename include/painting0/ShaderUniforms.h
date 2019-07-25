@@ -13,8 +13,6 @@ namespace pt0
 class ShaderUniforms
 {
 public:
-    ShaderUniforms() {}
-
     void AddVar(const std::string& name, const RenderVariant& var);
     const RenderVariant* FetchVar(const std::string& name) const;
 
