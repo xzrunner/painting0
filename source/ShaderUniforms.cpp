@@ -61,7 +61,7 @@ void ShaderUniforms::Bind(const ur::Shader& shader) const
             int tex_id = val.tex.tex->TexID();
             ur::Blackboard::Instance()->GetRenderContext().BindTexture(tex_id, 0);
         }
-            break;
+        break;
         case RenderVarType::SAMPLER3D:
             break;
         case RenderVarType::SAMPLERCUBE:
@@ -85,9 +85,21 @@ void ShaderUniforms::Bind(const ur::Shader& shader) const
             shader.SetMat4(name, val.mat4.x);
             break;
         case RenderVarType::ARRAY:
-            assert(val.array.type == RenderVarType::MAT4);
-            shader.SetMultiMat4(name, static_cast<const sm::mat4*>(val.array.data)->x, val.array.size);
+        {
+            switch (val.array.type)
+            {
+            case RenderVarType::VEC3:
+                shader.SetVec3Array(name, static_cast<const sm::vec3*>(val.array.data)->xyz, val.array.size);
+                break;
+            case RenderVarType::VEC4:
+                shader.SetVec3Array(name, static_cast<const sm::vec4*>(val.array.data)->xyzw, val.array.size);
+                break;
+            case RenderVarType::MAT4:
+                shader.SetMat4Array(name, static_cast<const sm::mat4*>(val.array.data)->x, val.array.size);
+                break;
+            }
             break;
+        }
         }
     }
 }

@@ -45,6 +45,8 @@ public:
     explicit RenderVariant(const sm::mat2& v) : type(RenderVarType::MAT2), mat2(v) {}
     explicit RenderVariant(const sm::mat3& v) : type(RenderVarType::MAT3), mat3(v) {}
     explicit RenderVariant(const sm::mat4& v) : type(RenderVarType::MAT4), mat4(v) {}
+    explicit RenderVariant(const sm::vec3* data, size_t size);
+    explicit RenderVariant(const sm::vec4* data, size_t size);
     explicit RenderVariant(const sm::mat4* data, size_t size);
 
     RenderVarType type;
