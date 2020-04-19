@@ -12,21 +12,29 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\include\painting0\Camera.h" />
+    <ClInclude Include="..\..\..\include\painting0\CamPosUpdater.h" />
     <ClInclude Include="..\..\..\include\painting0\Color.h" />
     <ClInclude Include="..\..\..\include\painting0\GlobalClock.h" />
     <ClInclude Include="..\..\..\include\painting0\Material.h" />
+    <ClInclude Include="..\..\..\include\painting0\ModelMatUpdater.h" />
     <ClInclude Include="..\..\..\include\painting0\RenderContext.h" />
     <ClInclude Include="..\..\..\include\painting0\RenderPass.h" />
     <ClInclude Include="..\..\..\include\painting0\RenderVariant.h" />
+    <ClInclude Include="..\..\..\include\painting0\ResolutionUpdater.h" />
     <ClInclude Include="..\..\..\include\painting0\Shader.h" />
     <ClInclude Include="..\..\..\include\painting0\ShaderUniforms.h" />
+    <ClInclude Include="..\..\..\include\painting0\TimeUpdater.h" />
     <ClInclude Include="..\..\..\include\painting0\UniformNames.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\source\CamPosUpdater.cpp" />
     <ClCompile Include="..\..\..\source\GlobalClock.cpp" />
+    <ClCompile Include="..\..\..\source\ModelMatUpdater.cpp" />
     <ClCompile Include="..\..\..\source\RenderVariant.cpp" />
+    <ClCompile Include="..\..\..\source\ResolutionUpdater.cpp" />
     <ClCompile Include="..\..\..\source\Shader.cpp" />
     <ClCompile Include="..\..\..\source\ShaderUniforms.cpp" />
+    <ClCompile Include="..\..\..\source\TimeUpdater.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\include\painting0\Color.inl" />
@@ -74,7 +82,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\..\..\include;..\..\..\..\cu\src;..\..\..\..\sm\src\sm;..\..\..\..\guard\include;..\..\..\..\memmgr\include;..\..\..\..\unirender\include;..\..\..\..\external\boost\include;..\..\..\..\external\rttr\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\include;..\..\..\..\cu\src;..\..\..\..\sm\src\sm;..\..\..\..\guard\include;..\..\..\..\memmgr\include;..\..\..\..\unirender2\include;..\..\..\..\external\boost\include;..\..\..\..\external\rttr\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;__STDC_LIMIT_MACROS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -88,7 +96,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>..\..\..\include;..\..\..\..\cu\src;..\..\..\..\sm\src\sm;..\..\..\..\guard\include;..\..\..\..\memmgr\include;..\..\..\..\unirender\include;..\..\..\..\external\boost\include;..\..\..\..\external\rttr\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\include;..\..\..\..\cu\src;..\..\..\..\sm\src\sm;..\..\..\..\guard\include;..\..\..\..\memmgr\include;..\..\..\..\unirender2\include;..\..\..\..\external\boost\include;..\..\..\..\external\rttr\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;__STDC_LIMIT_MACROS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>

@@ -11,6 +11,18 @@
     <ClCompile Include="..\..\..\source\ShaderUniforms.cpp">
       <Filter>render</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\source\TimeUpdater.cpp">
+      <Filter>render\uniforms</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\ModelMatUpdater.cpp">
+      <Filter>render\uniforms</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\ResolutionUpdater.cpp">
+      <Filter>render\uniforms</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\source\CamPosUpdater.cpp">
+      <Filter>render\uniforms</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\include\painting0\Camera.h" />
@@ -39,6 +51,18 @@
     <ClInclude Include="..\..\..\include\painting0\RenderContext.h">
       <Filter>render</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\include\painting0\TimeUpdater.h">
+      <Filter>render\uniforms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\painting0\ModelMatUpdater.h">
+      <Filter>render\uniforms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\painting0\ResolutionUpdater.h">
+      <Filter>render\uniforms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\painting0\CamPosUpdater.h">
+      <Filter>render\uniforms</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="render">
@@ -46,6 +70,9 @@
     </Filter>
     <Filter Include="dataset">
       <UniqueIdentifier>{f0ff7d4b-e76e-4c78-8859-bee1bedd408d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="render\uniforms">
+      <UniqueIdentifier>{bfa8d08e-7fe9-416e-8a31-decb28230278}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

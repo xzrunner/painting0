@@ -37,7 +37,9 @@ public:
 
 	virtual CamTypeID TypeID() const = 0;
 
-	virtual void OnSize(float width, float height) = 0;
+    virtual void OnSize(float width, float height) {
+        m_size.Set(width, height);
+    }
 
 	virtual void Bind() const = 0;
 
@@ -45,6 +47,11 @@ public:
 	virtual sm::mat4 GetProjectionMat() const = 0;
 
 	virtual void Reset() = 0;
+
+    auto& GetSize() const { return m_size; }
+
+private:
+    sm::vec2 m_size;
 
 }; // Camera
 

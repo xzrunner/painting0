@@ -1,9 +1,9 @@
 #include "painting0/ShaderUniforms.h"
 #include "painting0/RenderVariant.h"
 
-#include <unirender/Shader.h>
-#include <unirender/Blackboard.h>
-#include <unirender/RenderContext.h>
+#include <unirender2/ShaderProgram.h>
+#include <unirender2/Uniform.h>
+#include <unirender2/Texture.h>
 
 namespace pt0
 {
@@ -36,66 +36,76 @@ void ShaderUniforms::SetVar(const std::string& name, const RenderVariant& var)
     memcpy(&itr->second, &var, sizeof(var));
 }
 
-void ShaderUniforms::Bind(const ur::Shader& shader) const
+void ShaderUniforms::Bind(const ur2::ShaderProgram& shader) const
 {
     for (auto& var : m_vars)
     {
         auto& name = var.first;
+        auto u = shader.QueryUniform(name);
+        if (!u) {
+            continue;
+        }
+
         auto& val = var.second;
         switch (val.type)
         {
         case RenderVarType::BOOL:
-            shader.SetInt(name, val.b ? 1 : 0);
+        {
+            const int i = val.b ? 1 : 0;
+            u->SetValue(&i);
+        }
             break;
         case RenderVarType::INT:
-            shader.SetInt(name, val.i);
+        {
+            const int i = val.i;
+            u->SetValue(&i);
+        }
             break;
         case RenderVarType::FLOAT:
-            shader.SetFloat(name, val.f);
+        {
+            const float f = val.f;
+            u->SetValue(&f);
+        }
             break;
-        case RenderVarType::SAMPLER1D:
-            break;
-        case RenderVarType::SAMPLER2D:
+        case RenderVarType::SAMPLER:
         {
             assert(val.tex.tex);
-            int tex_id = val.tex.tex->TexID();
-            ur::Blackboard::Instance()->GetRenderContext().BindTexture(tex_id, 0);
+            int i = val.tex.tex->GetTexID();
+            u->SetValue(&i);
         }
-        break;
-        case RenderVarType::SAMPLER3D:
             break;
         case RenderVarType::SAMPLERCUBE:
             break;
         case RenderVarType::VEC2:
-            shader.SetVec2(name, val.vec2.xy);
+            u->SetValue(val.vec2.xy, 2);
             break;
         case RenderVarType::VEC3:
-            shader.SetVec3(name, val.vec3.xyz);
+            u->SetValue(val.vec3.xyz, 3);
             break;
         case RenderVarType::VEC4:
-            shader.SetVec4(name, val.vec4.xyzw);
+            u->SetValue(val.vec4.xyzw, 4);
             break;
         case RenderVarType::MAT2:
-            // todo
+            u->SetValue(val.mat2.x, 2 * 2);
             break;
         case RenderVarType::MAT3:
-            shader.SetMat3(name, val.mat3.x);
+            u->SetValue(val.mat3.x, 3 * 3);
             break;
         case RenderVarType::MAT4:
-            shader.SetMat4(name, val.mat4.x);
+            u->SetValue(val.mat4.x, 4 * 4);
             break;
         case RenderVarType::ARRAY:
         {
             switch (val.array.type)
             {
             case RenderVarType::VEC3:
-                shader.SetVec3Array(name, static_cast<const sm::vec3*>(val.array.data)->xyz, val.array.size);
+                u->SetValue(static_cast<const sm::vec3*>(val.array.data)->xyz, 3 * val.array.size);
                 break;
             case RenderVarType::VEC4:
-                shader.SetVec3Array(name, static_cast<const sm::vec4*>(val.array.data)->xyzw, val.array.size);
+                u->SetValue(static_cast<const sm::vec4*>(val.array.data)->xyzw, 4 * val.array.size);
                 break;
             case RenderVarType::MAT4:
-                shader.SetMat4Array(name, static_cast<const sm::mat4*>(val.array.data)->x, val.array.size);
+                u->SetValue(static_cast<const sm::mat4*>(val.array.data)->x, 4 * 4 * val.array.size);
                 break;
             }
             break;
