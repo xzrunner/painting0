@@ -21,12 +21,34 @@ public:
     }
 
     virtual void Update(const ur2::Context& ctx,
-        const ur2::DrawState& draw, const void* scene = nullptr) override {}
+        const ur2::DrawState& draw, const void* scene = nullptr) override;
 
     void Update(const sm::mat4& mat);
 
+    auto& GetValue() const { return m_mat; }
+
+public:
+    class Snapshot
+    {
+    public:
+        Snapshot(ModelMatUpdater& updater)
+            : m_updater(updater), m_mat(updater.m_mat) {}
+
+        void Restore() {
+            m_updater.Update(m_mat);
+        }
+
+    private:
+        ModelMatUpdater& m_updater;
+
+        sm::mat4 m_mat;
+
+    }; // Snapshot
+
 private:
     std::shared_ptr<ur2::Uniform> m_uniform = nullptr;
+
+    sm::mat4 m_mat;
 
 }; // ModelMatUpdater
 
