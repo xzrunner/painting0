@@ -5,7 +5,7 @@
 #include <map>
 #include <memory>
 
-namespace ur2 { class ShaderProgram; }
+namespace ur { class ShaderProgram; }
 
 namespace pt0
 {
@@ -19,7 +19,7 @@ public:
     auto& GetAllVars() const { return m_vars; }
     void SetVar(const std::string& name, const RenderVariant& var);
 
-    void Bind(const ur2::ShaderProgram& shader) const;
+    void Bind(const ur::ShaderProgram& shader) const;
 
 private:
     std::map<std::string, RenderVariant> m_vars;

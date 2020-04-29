@@ -1,13 +1,13 @@
 #include "painting0/TimeUpdater.h"
 #include "painting0/GlobalClock.h"
 
-#include <unirender2/ShaderProgram.h>
-#include <unirender2/Uniform.h>
+#include <unirender/ShaderProgram.h>
+#include <unirender/Uniform.h>
 
 namespace pt0
 {
 
-TimeUpdater::TimeUpdater(const ur2::ShaderProgram& shader,
+TimeUpdater::TimeUpdater(const ur::ShaderProgram& shader,
                          const std::string& time_name,
                          const std::string& sine_time_name,
                          const std::string& cos_time_name,
@@ -21,7 +21,7 @@ TimeUpdater::TimeUpdater(const ur2::ShaderProgram& shader,
     m_u_delta_time = shader.QueryUniform(delta_time_name);
 }
 
-void TimeUpdater::Update(const ur2::Context& ctx, const ur2::DrawState& draw, const void* scene)
+void TimeUpdater::Update(const ur::Context& ctx, const ur::DrawState& draw, const void* scene)
 {
     m_conn_tick.disconnect();
 }

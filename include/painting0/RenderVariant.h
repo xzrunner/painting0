@@ -3,7 +3,7 @@
 #include <SM_Vector.h>
 #include <SM_Matrix.h>
 
-namespace ur2 { class Texture; }
+namespace ur { class Texture; }
 
 namespace pt0
 {
@@ -38,7 +38,7 @@ public:
     explicit RenderVariant(bool v)  : type(RenderVarType::BOOL),  b(v) {}
     explicit RenderVariant(int  v)  : type(RenderVarType::INT),   i(v) {}
     explicit RenderVariant(float v) : type(RenderVarType::FLOAT), f(v) {}
-    explicit RenderVariant(const ur2::Texture* tex);
+    explicit RenderVariant(const ur::Texture* tex);
     explicit RenderVariant(const sm::vec2& v) : type(RenderVarType::VEC2), vec2(v) {}
     explicit RenderVariant(const sm::vec3& v) : type(RenderVarType::VEC3), vec3(v) {}
     explicit RenderVariant(const sm::vec4& v) : type(RenderVarType::VEC4), vec4(v) {}
@@ -54,7 +54,7 @@ public:
     struct Texture
     {
         unsigned int unit = 0;
-        const ur2::Texture* tex = nullptr;
+        const ur::Texture* tex = nullptr;
     };
 
     struct Array

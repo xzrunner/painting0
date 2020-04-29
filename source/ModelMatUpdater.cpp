@@ -1,18 +1,18 @@
 #include "painting0/ModelMatUpdater.h"
 
-#include <unirender2/ShaderProgram.h>
-#include <unirender2/Uniform.h>
+#include <unirender/ShaderProgram.h>
+#include <unirender/Uniform.h>
 
 namespace pt0
 {
 
-ModelMatUpdater::ModelMatUpdater(const ur2::ShaderProgram& shader,
+ModelMatUpdater::ModelMatUpdater(const ur::ShaderProgram& shader,
                                  const std::string& name)
 {
     m_uniform = shader.QueryUniform(name);
 }
 
-void ModelMatUpdater::Update(const ur2::Context& ctx, const ur2::DrawState& draw, const void* scene)
+void ModelMatUpdater::Update(const ur::Context& ctx, const ur::DrawState& draw, const void* scene)
 {
 }
 

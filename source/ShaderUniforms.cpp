@@ -1,9 +1,9 @@
 #include "painting0/ShaderUniforms.h"
 #include "painting0/RenderVariant.h"
 
-#include <unirender2/ShaderProgram.h>
-#include <unirender2/Uniform.h>
-#include <unirender2/Texture.h>
+#include <unirender/ShaderProgram.h>
+#include <unirender/Uniform.h>
+#include <unirender/Texture.h>
 
 namespace pt0
 {
@@ -36,7 +36,7 @@ void ShaderUniforms::SetVar(const std::string& name, const RenderVariant& var)
     memcpy(&itr->second, &var, sizeof(var));
 }
 
-void ShaderUniforms::Bind(const ur2::ShaderProgram& shader) const
+void ShaderUniforms::Bind(const ur::ShaderProgram& shader) const
 {
     for (auto& var : m_vars)
     {

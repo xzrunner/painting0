@@ -8,7 +8,7 @@
 //#include "painting0/UniformNames.h"
 //
 //#include <SM_Matrix.h>
-//#include <unirender2/ShaderProgram.h>
+//#include <unirender/ShaderProgram.h>
 //
 //#include <boost/signals2.hpp>
 //
@@ -17,7 +17,7 @@
 //namespace pt0
 //{
 //
-//class Shader : public ur2::ShaderProgram
+//class Shader : public ur::ShaderProgram
 //{
 //public:
 //	struct Params

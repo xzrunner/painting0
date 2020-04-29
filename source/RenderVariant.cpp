@@ -14,7 +14,7 @@ RenderVariant& RenderVariant::operator = (const RenderVariant& var)
     return *this;
 }
 
-RenderVariant::RenderVariant(const ur2::Texture* tex)
+RenderVariant::RenderVariant(const ur::Texture* tex)
     : type(RenderVarType::SAMPLER)
 {
     this->tex.tex = tex;
