@@ -1,5 +1,6 @@
 #pragma once
 
+#include <SM_Vector.h>
 #include <unirender/UniformUpdater.h>
 
 #include <string>
@@ -21,6 +22,8 @@ public:
 
     virtual void Update(const ur::Context& ctx,
         const ur::DrawState& draw, const void* scene = nullptr) override;
+
+    void Update(const sm::vec3& pos);
 
 private:
     std::shared_ptr<ur::Uniform> m_uniform = nullptr;
