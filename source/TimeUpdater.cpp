@@ -58,6 +58,9 @@ void TimeUpdater::UpdateTime(float t, float dt, float smooth_dt)
             float val[] = { dt, 1 / dt, smooth_dt, 1 / smooth_dt };
             m_u_delta_time->SetValue(val, 4);
         }
+
+        m_dt = dt;
+        m_smooth_dt = smooth_dt;
     }
 }
 
