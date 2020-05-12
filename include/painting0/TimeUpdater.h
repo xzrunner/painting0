@@ -15,6 +15,7 @@ public:
     TimeUpdater(const ur::ShaderProgram& shader,
         const std::string& time_name, const std::string& sine_time_name,
         const std::string& cos_time_name, const std::string& delta_time_name);
+    virtual ~TimeUpdater();
 
     virtual ur::UpdaterID UpdaterTypeID() const override {
         return ur::GetUpdaterTypeID<TimeUpdater>();

@@ -21,9 +21,13 @@ TimeUpdater::TimeUpdater(const ur::ShaderProgram& shader,
     m_u_delta_time = shader.QueryUniform(delta_time_name);
 }
 
-void TimeUpdater::Update(const ur::Context& ctx, const ur::DrawState& draw, const void* scene)
+TimeUpdater::~TimeUpdater()
 {
     m_conn_tick.disconnect();
+}
+
+void TimeUpdater::Update(const ur::Context& ctx, const ur::DrawState& draw, const void* scene)
+{
 }
 
 void TimeUpdater::UpdateTime(float t, float dt, float smooth_dt)
