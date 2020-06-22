@@ -19,7 +19,9 @@ void CamPosUpdater::Update(const ur::Context& ctx, const ur::DrawState& draw,
 
 void CamPosUpdater::Update(const sm::vec3& pos)
 {
-    m_uniform->SetValue(pos.xyz, 3);
+	if (m_uniform) {
+		m_uniform->SetValue(pos.xyz, 3);
+	}
 }
 
 }
