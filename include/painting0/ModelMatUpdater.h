@@ -14,7 +14,7 @@ class ModelMatUpdater : public ur::UniformUpdater
 {
 public:
     ModelMatUpdater(const ur::ShaderProgram& shader,
-        const std::string& name);
+        const std::string& name, sm::mat4* mat = nullptr);
 
     virtual ur::UpdaterID UpdaterTypeID() const override {
         return ur::GetUpdaterTypeID<ModelMatUpdater>();
@@ -49,6 +49,8 @@ private:
     std::shared_ptr<ur::Uniform> m_uniform = nullptr;
 
     sm::mat4 m_mat;
+
+    sm::mat4* m_ret_mat = nullptr;
 
 }; // ModelMatUpdater
 
