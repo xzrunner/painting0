@@ -15,6 +15,9 @@ ModelMatUpdater::ModelMatUpdater(const ur::ShaderProgram& shader,
 
 void ModelMatUpdater::Update(const ur::Context& ctx, const ur::DrawState& draw, const void* scene)
 {
+    if (m_uniform) {
+        m_uniform->SetValue(m_mat.x, 4 * 4);
+    }
 }
 
 void ModelMatUpdater::Update(const sm::mat4& mat)
